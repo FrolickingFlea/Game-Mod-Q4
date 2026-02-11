@@ -67,6 +67,8 @@ private:
 CLASS_DECLARATION( rvWeapon, rvWeaponRocketLauncher )
 END_CLASS
 
+float fireRateMod = 1;
+
 /*
 ================
 rvWeaponRocketLauncher::rvWeaponRocketLauncher
@@ -412,6 +414,7 @@ stateResult_t rvWeaponRocketLauncher::State_Idle( const stateParms_t& parms ) {
 		case STAGE_INIT:
 			if ( !AmmoAvailable ( ) ) {
 				SetStatus ( WP_OUTOFAMMO );
+				fireRateMod = 1;
 			} else {
 				SetStatus ( WP_READY );
 			}
@@ -439,8 +442,6 @@ rvWeaponRocketLauncher::State_Fire
 ================
 */
 
-float fireRateMod = 1;
-
 stateResult_t rvWeaponRocketLauncher::State_Fire ( const stateParms_t& parms ) {
 	enum {
 		STAGE_INIT,
@@ -451,7 +452,7 @@ stateResult_t rvWeaponRocketLauncher::State_Fire ( const stateParms_t& parms ) {
 			nextAttackTime = gameLocal.time + (fireRate * fireRateMod *owner->PowerUpModifier ( PMOD_FIRERATE ));		
 			Attack ( false, 1, spread, 0, 1.0f );
 			PlayAnim ( ANIMCHANNEL_LEGS, "fire", parms.blendFrames );
-			fireRateMod /= 1.3f;
+			fireRateMod /= 1.05f;
 			/*if (fireRate < 0.015) {
 				fireRate = 0.015;
 			}*/
