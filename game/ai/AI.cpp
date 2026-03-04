@@ -25,8 +25,8 @@ const char* aiTalkMessageString [ ] = {
 	"loop"
 };
 
-static const float AI_SIGHTDELAYSCALE	= 5000.0f;			// Full sight delay at 5 seconds or more of not seeing enemy
 
+static const float AI_SIGHTDELAYSCALE	= 5000.0f;			// Full sight delay at 5 seconds or more of not seeing enemy
 
 /*
 ===============================================================================
@@ -616,7 +616,7 @@ void idAI::Spawn( void ) {
 	// Initialize the non saved spawn args
 	InitNonPersistentSpawnArgs ( );	
 
-	spawnArgs.GetInt(	"team",					"1",		team );
+	spawnArgs.GetInt(	"team",					"1",		team);
 	spawnArgs.GetInt(	"rank",					"0",		rank );
 
 	animPrefix = spawnArgs.GetString ( "animPrefix", "" );
@@ -5149,3 +5149,5 @@ bool idAI::CheckDeathCausesMissionFailure( void )
 	}
 	return false;
 }
+
+

@@ -1,3 +1,7 @@
+//
+// base. will manage all enemy team behavior if team == strogg
+//
+
 #include "../../idlib/precompiled.h"
 #pragma hdrstop
 
@@ -22,6 +26,8 @@ public:
 
 	//void				ScriptedFace					( idEntity* faceEnt, bool endWithIdle );
 
+	void			Think(void);
+	void			setupListings(void);
 protected:
 
 	bool				CheckActions					( void );
@@ -207,6 +213,8 @@ protected:
 
 
 	CLASS_STATES_PROTOTYPE ( rvMonsterBossMakron );
+
+	void			OnDeath(void);
 };
 
 const idEventDef EV_AllowMoreSpawns(	"allowMoreSpawns" );
@@ -551,10 +559,13 @@ void rvMonsterBossMakron::Spawn ( void ) {
 	}
 
 	//build the action array
-	BuildActionArray();
+	//BuildActionArray();
 
 	// pre-cache decls
 	gameLocal.FindEntityDefDict ( "monster_makron_legs" );
+
+	setupListings();
+
 }
 
 /*
@@ -2342,6 +2353,31 @@ void rvMonsterBossMakron::Event_StompAttack (idVec3& origin) 	{
 	//run it back
 	PostEventSec( &EV_StompAttack, stompSpeed / stompMaxRadius , origin );
 
+}
+
+//new methods for structures. Useful as a template
+
+void rvMonsterBossMakron::Think(void) {
+
+	if (team != 0) {
+		//enemy AI here
+		return;
+	}
+}
+
+void rvMonsterBossMakron::OnDeath(void) {
+	if (team == 0) {
+		//remove building listings
+	}
+	else {
+		//win condition reached
+	}
+}
+
+void rvMonsterBossMakron::setupListings(void) {
+	if (team == 0) {
+		//add store listings
+	}
 }
 
 	

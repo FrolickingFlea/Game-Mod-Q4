@@ -114,6 +114,7 @@ public:
 };
 
 class idActor : public idAFEntity_Gibbable {
+
 public:
 	CLASS_PROTOTYPE( idActor );
 
