@@ -2361,13 +2361,13 @@ void rvMonsterBossMakron::Think(void) {
 
 	if (team != 0) {
 		//enemy AI here
-		return;
+		
 	}
 }
 
 void rvMonsterBossMakron::OnDeath(void) {
 	if (team == 0) {
-		//remove building listings
+		//loss condition
 	}
 	else {
 		//win condition reached
@@ -2376,7 +2376,7 @@ void rvMonsterBossMakron::OnDeath(void) {
 
 void rvMonsterBossMakron::setupListings(void) {
 	if (team == 0) {
-		//add store listings
+		//add store listings, skip?
 	}
 }
 
