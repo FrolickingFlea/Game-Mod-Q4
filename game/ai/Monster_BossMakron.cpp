@@ -28,6 +28,30 @@ public:
 
 	void			Think(void);
 	void			setupListings(void);
+	short			aiStage = 0;
+	short			thinkCount = 0;
+
+	//used to determine if heavier units can be spawned.
+	bool			hasTankFactory = false;
+
+	void placeStructure(int type, idVec3 pos);
+	bool placeUnit(int type);
+
+	idVec3 barracksLocation = idVec3(-1000, -1000, -1000);
+	idVec3 tankFactoryLocation = idVec3(-1000, -1000, -1000);
+	idVec3 airbaseLocation = idVec3(-1000, -1000, -1000);
+
+	enum {
+		POWER,
+		BARRACKS,
+		TANK_FACTORY,
+		TURRET,
+		TURRET_AIR,
+		AIRBASE
+	};
+
+	idRandom randGen = idRandom(0);
+
 protected:
 
 	bool				CheckActions					( void );
@@ -2359,9 +2383,53 @@ void rvMonsterBossMakron::Event_StompAttack (idVec3& origin) 	{
 
 void rvMonsterBossMakron::Think(void) {
 
+	StaticMove();
+
 	if (team != 0) {
 		//enemy AI here
-		
+		thinkCount++;
+
+		//check if ready to build something
+		if (thinkCount < 60) {
+			return;
+		}
+		thinkCount = 0;
+
+		switch (aiStage) {
+		case 0:
+			//build power gen
+			break;
+		case 1:
+			//build barracks
+			break;
+		default:
+			int rand = randGen.RandomInt(3);
+			idVec3 randPos;
+			idMat3 dummy;
+
+			switch (rand) {
+			case 0:
+				rand = randGen.RandomInt(4);
+				GetPosition(randPos, dummy);
+				randPos.x = randPos.x - 500 + randGen.RandomInt(1000);
+				randPos.y = randPos.y - 500 + randGen.RandomInt(1000);
+
+				placeStructure(rand, randPos);
+				break;
+			default:
+				while (true) {
+					rand = randGen.RandomInt(9);
+					if (placeUnit(rand)) {
+						break;
+					}
+					//uncomment break when finishing AI
+					break;
+				}
+				break;
+			}
+
+			break;
+		}
 	}
 }
 
@@ -2378,6 +2446,46 @@ void rvMonsterBossMakron::setupListings(void) {
 	if (team == 0) {
 		//add store listings, skip?
 	}
+}
+
+void rvMonsterBossMakron::placeStructure(int type, idVec3 pos) {
+
+	switch (type) {
+	case BARRACKS:
+
+		barracksLocation = pos;
+		break;
+	case TANK_FACTORY:
+
+		tankFactoryLocation = pos;
+		break;
+	case TURRET:
+		break; 
+	case TURRET_AIR:
+		break;
+	case POWER:
+		break;
+	case AIRBASE:
+
+		airbaseLocation = pos;
+		break;
+	}
+
+}
+
+bool rvMonsterBossMakron::placeUnit(int type) {
+
+	//check if tank factory exists if we are ordering tanks.
+	//will re-roll on if it fails
+	if (type > 6 && tankFactoryLocation == idVec3(-1000, -1000, -1000)) {
+		return false;
+	}
+
+	switch (type) {
+		//insert units here as needed
+	}
+
+	return true;
 }
 
 	
