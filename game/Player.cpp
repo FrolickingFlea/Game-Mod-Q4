@@ -10904,12 +10904,14 @@ void idPlayer::GetViewPos( idVec3 &origin, idMat3 &axis ) const {
   		playerView.ShakeOffsets( shakeOffset, shakeAngleOffset, relBounds );
   		origin = GetEyePosition() + viewBob + shakeOffset;  		
 		angles = viewAngles + viewBobAngles + shakeAngleOffset + playerView.AngleOffset();
-
+		angles.pitch += 90;
 		axis = angles.ToMat3() * physicsObj.GetGravityAxis();
 
 		// adjust the origin based on the camera nodal distance (eye distance from neck)
 		origin += physicsObj.GetGravityNormal() * g_viewNodalZ.GetFloat();
 		origin += axis[0] * g_viewNodalX.GetFloat() + axis[2] * g_viewNodalZ.GetFloat();
+
+		origin.z += 600;
 	}
 }
 
