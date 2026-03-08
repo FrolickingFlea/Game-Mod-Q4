@@ -1243,6 +1243,17 @@ void idAI::Think( void ) {
 	if ( ai_speeds.GetBool ( ) ) {
 		aiManager.timerThink.Stop ( );
 	}
+
+	if (team == 0) {
+		idVec3 requestedMove = gameLocal.GetLocalPlayer()->gotoPos;
+		if (requestedMove.ToString() == savedLastMove) {
+			return;
+		}
+		StopMove(MOVE_STATUS_DONE);
+		MoveTo(requestedMove, 500);
+		savedLastMove = (char*)requestedMove.ToString();
+	}
+
 }
 
 /*
@@ -3667,6 +3678,9 @@ idAI::
 */
 
 void idAI::OnDeath( void ){
+
+	//gameLocal.GetLocalPlayer()->spawnedUnitList.Remove(*this);
+
 	if( vehicleController.IsDriving() ){
 		usercmd_t				usercmd;
 

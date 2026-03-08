@@ -2503,6 +2503,13 @@ rvWeapon::Attack
 ================
 */
 void rvWeapon::Attack( bool altAttack, int num_attacks, float spread, float fuseOffset, float power ) {
+	idVec3 pos;
+	gameLocal.GetLocalPlayer()->GetPosition(pos, idMat3());
+
+	gameLocal.GetLocalPlayer()->gotoPos = pos;
+	gameLocal.Printf("Plaser Click: ");
+	gameLocal.Printf(pos.ToString());
+
 	idVec3 muzzleOrigin;
 	idMat3 muzzleAxis;
 	
@@ -2737,7 +2744,7 @@ void rvWeapon::OnLaunchProjectile ( idProjectile* proj ) {
 rvWeapon::Hitscan
 ================
 */
-void rvWeapon::Hitscan( const idDict& dict, const idVec3& muzzleOrigin, const idMat3& muzzleAxis, int num_hitscans, float spread, float power ) {
+void rvWeapon::Hitscan( const idDict& dict, const idVec3& muzzleOrigin, const idMat3& muzzleAxis, int num_hitscans, float spread, float power ) {	
 	idVec3  fxOrigin;
 	idMat3  fxAxis;
 	int		i;
@@ -2792,6 +2799,9 @@ void rvWeapon::Hitscan( const idDict& dict, const idVec3& muzzleOrigin, const id
 			end += ( u * playerViewAxis[ 2 ] );
 #endif
 			dir = end - muzzleOrigin;
+
+			
+
 		} else if( weaponDef->dict.GetBool( "shotgunSpreadStyle" ) ) {
 			float r = gameLocal.random.CRandomFloat() * spread * 16;
 			float u = gameLocal.random.CRandomFloat() * spread * 16;
@@ -2806,17 +2816,19 @@ void rvWeapon::Hitscan( const idDict& dict, const idVec3& muzzleOrigin, const id
 			end += ( u * playerViewAxis[ 2 ] );
 #endif
 			dir = end - muzzleOrigin;
-		} else {
-			ang = idMath::Sin( spreadRad * gameLocal.random.RandomFloat() );
-			spin = (float)DEG2RAD( 360.0f ) * gameLocal.random.RandomFloat();
+		}
+		else {
+			ang = idMath::Sin(spreadRad * gameLocal.random.RandomFloat());
+			spin = (float)DEG2RAD(360.0f) * gameLocal.random.RandomFloat();
 			//RAVEN BEGIN
 			//asalmon: xbox must use the muzzleAxis so the aim can be adjusted for aim assistance
 #ifdef _XBOX
-			dir = muzzleAxis[ 0 ] + muzzleAxis[ 2 ] * ( ang * idMath::Sin( spin ) ) - muzzleAxis[ 1 ] * ( ang * idMath::Cos( spin ) );
+			dir = muzzleAxis[0] + muzzleAxis[2] * (ang * idMath::Sin(spin)) - muzzleAxis[1] * (ang * idMath::Cos(spin));
 #else
-			dir = playerViewAxis[ 0 ] + playerViewAxis[ 2 ] * ( ang * idMath::Sin( spin ) ) - playerViewAxis[ 1 ] * ( ang * idMath::Cos( spin ) );
+			dir = playerViewAxis[0] + playerViewAxis[2] * (ang * idMath::Sin(spin)) - playerViewAxis[1] * (ang * idMath::Cos(spin));
 #endif
 			//RAVEN END
+
 		}
 		dir.Normalize();
 

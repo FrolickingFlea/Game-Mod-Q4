@@ -27,7 +27,7 @@ public:
 	//void				ScriptedFace					( idEntity* faceEnt, bool endWithIdle );
 
 	void			Think(void);
-	void			setupListings(void);
+	
 	short			aiStage = 0;
 	short			thinkCount = 0;
 
@@ -237,8 +237,6 @@ protected:
 
 
 	CLASS_STATES_PROTOTYPE ( rvMonsterBossMakron );
-
-	void			OnDeath(void);
 };
 
 const idEventDef EV_AllowMoreSpawns(	"allowMoreSpawns" );
@@ -583,12 +581,10 @@ void rvMonsterBossMakron::Spawn ( void ) {
 	}
 
 	//build the action array
-	//BuildActionArray();
+	BuildActionArray();
 
 	// pre-cache decls
 	gameLocal.FindEntityDefDict ( "monster_makron_legs" );
-
-	setupListings();
 
 }
 
@@ -1022,6 +1018,18 @@ rvMonsterBossMakron::Killed
 ================
 */
 void rvMonsterBossMakron::Killed( idEntity *inflictor, idEntity *attacker, int damage, const idVec3 &dir, int location )	{
+
+	if (team == 0) {
+		//fail objective
+		char* dummy = "Failed to defend your base!";
+		gameLocal.GetLocalPlayer()->FailObjective(dummy);
+	}
+	else {
+		//win condition reached
+		char* dummy = "Successfully destroyed the enemy base!";
+		gameLocal.GetLocalPlayer()->CompleteObjective(dummy);
+	}
+
 
 	//if this is the undying Makron Jr, don't worry about death. Stop what we're doing,
 	//Call the script function and let it ride.
@@ -2384,6 +2392,7 @@ void rvMonsterBossMakron::Event_StompAttack (idVec3& origin) 	{
 void rvMonsterBossMakron::Think(void) {
 
 	StaticMove();
+	idAI::Think();
 
 	if (team != 0) {
 		//enemy AI here
@@ -2411,8 +2420,8 @@ void rvMonsterBossMakron::Think(void) {
 			case 0:
 				rand = randGen.RandomInt(4);
 				GetPosition(randPos, dummy);
-				randPos.x = randPos.x - 500 + randGen.RandomInt(1000);
-				randPos.y = randPos.y - 500 + randGen.RandomInt(1000);
+				randPos.x = randPos.x - 5000 + randGen.RandomInt(10000);
+				randPos.y = randPos.y - 5000 + randGen.RandomInt(10000);
 
 				placeStructure(rand, randPos);
 				break;
@@ -2430,21 +2439,6 @@ void rvMonsterBossMakron::Think(void) {
 
 			break;
 		}
-	}
-}
-
-void rvMonsterBossMakron::OnDeath(void) {
-	if (team == 0) {
-		//loss condition
-	}
-	else {
-		//win condition reached
-	}
-}
-
-void rvMonsterBossMakron::setupListings(void) {
-	if (team == 0) {
-		//add store listings, skip?
 	}
 }
 
@@ -2483,6 +2477,8 @@ bool rvMonsterBossMakron::placeUnit(int type) {
 
 	switch (type) {
 		//insert units here as needed
+		default:
+			break;
 	}
 
 	return true;

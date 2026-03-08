@@ -425,6 +425,14 @@ public:
 	float					buyMenuCash;
 // RITUAL END
 
+	//frinedly ai unit goToPosition
+	idVec3 gotoPos;
+
+	int money = 5000;
+
+	idVec3 barracksPos;
+	idVec3 tankFactoryPos;
+
 public:
 	CLASS_PROTOTYPE( idPlayer );
 

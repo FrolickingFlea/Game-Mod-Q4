@@ -438,6 +438,8 @@ public:
 							idAI();
 							~idAI();
 
+	char* savedLastMove = "";
+
 	void					Save							( idSaveGame *savefile ) const;
 	void					Restore							( idRestoreGame *savefile );
 
@@ -655,6 +657,7 @@ public:
 	void					CheckObstacleAvoidance			( const idVec3 &goalPos, idVec3 &newPos, idReachability* goalReach=0  );
 	bool					GetMovePos						( idVec3 &seekPos, idReachability** seekReach=0 );
 
+	idVec3					commandMoveToPosition;
 
 	// navigation
 	float					TravelDistance					( const idVec3 &end ) const;

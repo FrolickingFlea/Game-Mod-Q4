@@ -2055,6 +2055,10 @@ void idPlayer::Spawn( void ) {
 //RITUAL END
 
 	itemCosts = static_cast< const idDeclEntityDef * >( declManager->FindType( DECL_ENTITYDEF, "ItemCostConstants", false ) );
+
+	idVec3 tmpPos;
+	GetPosition(tmpPos, idMat3());
+	gotoPos = tmpPos;
 }
 
 /*

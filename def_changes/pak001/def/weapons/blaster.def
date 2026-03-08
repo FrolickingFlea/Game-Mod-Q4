@@ -78,8 +78,8 @@ entityDef weapon_blaster
 	"joint_world_flash"			"muzzle_flash"
 
 	// Firing properties
-	"chargeTime"				".8"
-	"chargeDelay"				".1"
+	"chargeTime"				"8000"
+	"chargeDelay"				"10"
 	"chargeGlow"				"0 .4"
 	"fireRate"					".15"
 	"spread"					".2"
