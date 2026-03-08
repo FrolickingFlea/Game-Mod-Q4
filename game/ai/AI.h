@@ -439,6 +439,7 @@ public:
 							~idAI();
 
 	char* savedLastMove = "";
+	int aiMoveCounter = 0;
 
 	void					Save							( idSaveGame *savefile ) const;
 	void					Restore							( idRestoreGame *savefile );

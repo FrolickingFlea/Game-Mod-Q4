@@ -1244,15 +1244,21 @@ void idAI::Think( void ) {
 		aiManager.timerThink.Stop ( );
 	}
 
-	if (team == 0) {
-		idVec3 requestedMove = gameLocal.GetLocalPlayer()->gotoPos;
-		if (requestedMove.ToString() == savedLastMove) {
-			return;
-		}
-		StopMove(MOVE_STATUS_DONE);
-		MoveTo(requestedMove, 500);
-		savedLastMove = (char*)requestedMove.ToString();
+	if (aiMoveCounter < 120 || team != 0) {
+		aiMoveCounter++;
+		return;
 	}
+
+
+	idVec3 requestedMove = gameLocal.GetLocalPlayer()->gotoPos;
+	TurnToward(requestedMove);
+	if ((char*)requestedMove.ToString() == savedLastMove) {
+		return;
+	}
+	StopMove(MOVE_STATUS_DONE);
+	//MoveTo(requestedMove, 500);
+	StartMove(MOVE_TO_POSITION, requestedMove, 500, gameLocal.GetLocalPlayer(), NULL, 500);
+	savedLastMove = (char*)requestedMove.ToString();
 
 }
 
