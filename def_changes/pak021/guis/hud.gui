@@ -2371,4 +2371,15 @@ windowDef Desktop
 		font	"fonts/r_strogg"
 		notime	1
 	}
+	windowDef hints
+	{
+		rect	420,173,240,341
+		visible	1
+		backcolor	0.494,0.494,0.494,0.709
+		forecolor	0,1,0,1
+		text	"  ==== Shop ====\n\n  Structures\n[B] $1500 - Reactor\n[N] $700 - Barracks\n[M] $2500 - Armor Factory\n[,] $800 - Autocannon turret\n[.] $1200 - Rocket Turret\n\n  Barracks\n[Y] $100 - Marine\n[U] $150 - Shotgun Marine\n[I] $200 - Hyperblaster Marine\n[O] $200 - Strogg Marine\n\n  Armor Factory\n[P] $300 - Grunt\n[H] $500 - Gladiator\n[J] $300 - Gunner\n[K] $1800 - Bomber\n[L] $800 - Light Tank\n[;] $1000 - Heavy Tank"
+		textscale	0.2
+		font	"fonts/r_strogg"
+		notime	1
+	}
 }

@@ -14,6 +14,7 @@ public:
 	rvMonsterBerserker ( void );
 
 	void				Spawn							( void );
+	void Think(void);
 	void				Save							( idSaveGame *savefile ) const;
 	void				Restore							( idRestoreGame *savefile );
 
@@ -78,6 +79,17 @@ void rvMonsterBerserker::Spawn ( void ) {
 	actionChargeAttack.Init ( spawnArgs, "action_chargeAttack", "Torso_ChargeAttack",	AIACTIONF_ATTACK );
 	PlayEffect( "fx_ambient_electricity", animator.GetJointHandle( "r_Lowerarm_Real" ), true );
 	PlayEffect( "fx_ambient_electricity_mace", animator.GetJointHandle( "chain9" ), true );
+
+	if (team == 0) {
+		idVec3 pos;
+		GetPosition(pos, idMat3());
+		gameLocal.GetLocalPlayer()->barracksPos = pos;
+	}
+}
+
+void rvMonsterBerserker::Think() {
+	StaticMove();
+	idAI::Think();
 }
 
 /*

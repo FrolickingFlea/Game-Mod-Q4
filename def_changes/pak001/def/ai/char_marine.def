@@ -2363,7 +2363,7 @@ entityDef char_marine_base
 	
 	// --------------------------------- Body ------------------------------------
 	"model"										"model_char_marine"
-	"team"										"0"
+	"team"										"1"
 	"size"										"32 32 72"
 	"use_aas"									"aas32"
 	"articulatedFigure"							"marine3"
@@ -2392,9 +2392,9 @@ entityDef char_marine_base
 	"deathhidesurface5"							"models/weapons/mp_guns/w_mg_lo"
 
 	// --------------------------------- Combat ------------------------------------
-	"forceEnemy"								"0"
+	"forceEnemy"								"1"
 	
-	"tactical_passive"							"1"
+	"tactical_passive"							"0"
 
 	// --------------------------------- Flashlight -----------------------------
 	"joint_flashlight"							"MG_muzzle_flash"

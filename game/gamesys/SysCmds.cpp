@@ -3038,6 +3038,192 @@ void Cmd_ClientOverflowReliable_f( const idCmdArgs& args ) {
 }
 #endif
 
+void spawnTurret(const idCmdArgs& args) {
+	int cost = 1200;
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	idVec3 origin;
+	if (player->money < cost) {
+		return;
+	}
+
+	player->GetPosition(origin, idMat3());
+	player->spawnUnit("monster_turret_rocket", origin, 0, "Rocket Turret");
+	player->money -= cost;
+}
+
+void spawnTurretFlying(const idCmdArgs& args) {
+	int cost = 800;
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	idVec3 origin;
+	if (player->money < cost) {
+		return;
+	}
+
+	player->GetPosition(origin, idMat3());
+	player->spawnUnit("monster_turret_flying", origin, 0, "Autocannon Turret");
+	player->money -= cost;
+}
+
+void spawnReactor(const idCmdArgs& args) {
+	int cost = 1500;
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	idVec3 origin;
+	if (player->money < cost) {
+		return;
+	}
+
+	player->GetPosition(origin, idMat3());
+	player->spawnUnit("char_marine_tech", origin, 0, "Reactor");
+	player->money -= cost;
+}
+
+void spawnTankFac(const idCmdArgs& args) {
+	int cost = 2500;
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	idVec3 origin;
+	if (player->money < cost) {
+		return;
+	}
+
+	player->GetPosition(origin, idMat3());
+	player->spawnUnit("monster_convoy_ground", origin, 0, "Armor Factory");
+	player->money -= cost;
+}
+
+void buildBarracks(const idCmdArgs& args) {
+	int cost = 700;
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	idVec3 origin;
+	if (player->money < cost) {
+		return;
+	}
+
+	player->GetPosition(origin, idMat3());
+	player->spawnUnit("monster_berserker", origin, 0, "Barracks");
+	player->money -= cost;
+}
+
+void spawnMarine(const idCmdArgs& args) {
+	int cost = 100;
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	idVec3 origin;
+	if (player->money < cost && player->barracksPos == idVec3(-1000, -1000, -1000)) {
+		return;
+	}
+
+	player->GetPosition(origin, idMat3());
+	player->spawnUnit("char_marine", player->barracksPos, 0, "Barracks");
+	player->money -= cost;
+}
+void spawnMarineSG(const idCmdArgs& args) {
+	int cost = 150;
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	idVec3 origin;
+	if (player->money < cost && player->barracksPos == idVec3(-1000, -1000, -1000)) {
+		return;
+	}
+
+	player->GetPosition(origin, idMat3());
+	player->spawnUnit("char_marine_shotgun", player->barracksPos, 0, "Barracks");
+	player->money -= cost;
+}
+void spawnMarineHB(const idCmdArgs& args) {
+	int cost = 200;
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	idVec3 origin;
+	if (player->money < cost && player->barracksPos == idVec3(-1000, -1000, -1000)) {
+		return;
+	}
+
+	player->GetPosition(origin, idMat3());
+	player->spawnUnit("char_marine_hyperblaster", player->barracksPos, 0, "Barracks");
+	player->money -= cost;
+}
+void spawnMarineStrogg(const idCmdArgs& args) {
+	int cost = 200;
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	idVec3 origin;
+	if (player->money < cost && player->barracksPos == idVec3(-1000, -1000, -1000)) {
+		return;
+	}
+
+	player->GetPosition(origin, idMat3());
+	player->spawnUnit("monster_strogg_marine", player->barracksPos, 0, "Barracks");
+	player->money -= cost;
+}
+void spawnGrunt(const idCmdArgs& args) {
+	int cost = 300;
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	idVec3 origin;
+	if (player->money < cost && player->tankFactoryPos == idVec3(-1000, -1000, -1000)) {
+		return;
+	}
+
+	player->GetPosition(origin, idMat3());
+	player->spawnUnit("monster_grunt", player->tankFactoryPos, 0, "Barracks");
+	player->money -= cost;
+}
+void spawnGladiator(const idCmdArgs& args) {
+	int cost = 500;
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	idVec3 origin;
+	if (player->money < cost && player->tankFactoryPos == idVec3(-1000, -1000, -1000)) {
+		return;
+	}
+
+	player->GetPosition(origin, idMat3());
+	player->spawnUnit("monster_gladiator", player->tankFactoryPos, 0, "Barracks");
+	player->money -= cost;
+}
+void spawnGunner(const idCmdArgs& args) {
+	int cost = 300;
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	idVec3 origin;
+	if (player->money < cost && player->tankFactoryPos == idVec3(-1000, -1000, -1000)) {
+		return;
+	}
+
+	player->GetPosition(origin, idMat3());
+	player->spawnUnit("monster_gunner", player->tankFactoryPos, 0, "Barracks");
+	player->money -= cost;
+}
+void spawnPlane(const idCmdArgs& args) {
+	int cost = 1800;
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	idVec3 origin;
+	if (player->money < cost && player->tankFactoryPos == idVec3(-1000, -1000, -1000)) {
+		return;
+	}
+
+	player->GetPosition(origin, idMat3());
+	player->spawnUnit("monster_strogg_hover", player->tankFactoryPos, 0, "Barracks");
+	player->money -= cost;
+}
+void spawnlt(const idCmdArgs& args) {
+	int cost = 800;
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	idVec3 origin;
+	if (player->money < cost && player->tankFactoryPos == idVec3(-1000, -1000, -1000)) {
+		return;
+	}
+
+	player->GetPosition(origin, idMat3());
+	player->spawnUnit("monster_lt_tank", player->tankFactoryPos, 0, "Barracks");
+	player->money -= cost;
+}
+void spawnht(const idCmdArgs& args) {
+	int cost = 1000;
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	idVec3 origin;
+	if (player->money < cost && player->tankFactoryPos == idVec3(-1000, -1000, -1000)) {
+		return;
+	}
+
+	player->GetPosition(origin, idMat3());
+	player->spawnUnit("monster_heavy_hovertank", player->tankFactoryPos, 0, "Barracks");
+	player->money -= cost;
+}
+
 /*
 =================
 idGameLocal::InitConsoleCommands
@@ -3233,6 +3419,26 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand( "buy",					Cmd_BuyItem_f,				CMD_FL_GAME,				"Buy an item (if in a buy zone and the game type supports it)" );
 // RITUAL END
 
+
+	//quake-rts cmds
+	cmdSystem->AddCommand("spawnturret", spawnTurretFlying, CMD_FL_GAME, "Spawns Turret");
+	cmdSystem->AddCommand("spawnturretRocket", spawnTurret, CMD_FL_GAME, "Spawns Rocket Turret");
+	cmdSystem->AddCommand("spawnReactor", spawnReactor, CMD_FL_GAME, "Spawns Reactor Generator");
+	cmdSystem->AddCommand("buildTankFac", spawnTankFac, CMD_FL_GAME, "Spawns Tank Factory");
+	cmdSystem->AddCommand("buildBarracks", buildBarracks, CMD_FL_GAME, "Spawns Barracks");
+
+	cmdSystem->AddCommand("buildmarine", spawnMarine, CMD_FL_GAME, "Spawns Barracks");
+	cmdSystem->AddCommand("buildmarineSG", spawnMarineSG, CMD_FL_GAME, "Spawns Barracks");
+	cmdSystem->AddCommand("buildmarineHB", spawnMarineHB, CMD_FL_GAME, "Spawns Barracks");
+	cmdSystem->AddCommand("buildmarinestrogg", spawnMarineStrogg, CMD_FL_GAME, "Spawns Barracks");
+
+	cmdSystem->AddCommand("buildgrunt", spawnGrunt, CMD_FL_GAME, "Spawns Barracks");
+	cmdSystem->AddCommand("buildglad", spawnGladiator, CMD_FL_GAME, "Spawns Barracks");
+	cmdSystem->AddCommand("buildgunner", spawnGunner, CMD_FL_GAME, "Spawns Barracks");
+	cmdSystem->AddCommand("buildplane", spawnPlane, CMD_FL_GAME, "Spawns Barracks");
+	cmdSystem->AddCommand("buildlt", spawnlt, CMD_FL_GAME, "Spawns Barracks");
+	cmdSystem->AddCommand("buildht", spawnht, CMD_FL_GAME, "Spawns Barracks");
+
 }
 
 /*
@@ -3243,3 +3449,5 @@ idGameLocal::ShutdownConsoleCommands
 void idGameLocal::ShutdownConsoleCommands( void ) {
 	cmdSystem->RemoveFlaggedCommands( CMD_FL_GAME );
 }
+
+

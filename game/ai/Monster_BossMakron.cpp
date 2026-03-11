@@ -6,6 +6,7 @@
 #pragma hdrstop
 
 #include "../Game_local.h"
+#include "../Player.h"
 
 class rvMonsterBossMakron : public idAI {
 public:
@@ -23,13 +24,15 @@ public:
 	void				Restore							( idRestoreGame *savefile );
 
 	void				BuildActionArray				( void );
+	void				spawnUnit(const char* className, idVec3 origin, int team, const char* name);
 
 	//void				ScriptedFace					( idEntity* faceEnt, bool endWithIdle );
 
 	void			Think(void);
 	
-	short			aiStage = 0;
-	short			thinkCount = 0;
+	short			aiStage = 1;
+	short			thinkCount = 2400;
+	short thinkTimeLimit = 2500;
 
 	//used to determine if heavier units can be spawned.
 	bool			hasTankFactory = false;
@@ -42,12 +45,22 @@ public:
 	idVec3 airbaseLocation = idVec3(-1000, -1000, -1000);
 
 	enum {
-		POWER,
 		BARRACKS,
 		TANK_FACTORY,
 		TURRET,
 		TURRET_AIR,
+		POWER,
 		AIRBASE
+	};
+
+	enum {
+		MARINE_STROGG,
+		GRUNT,
+		BRUTE,
+		GUNNER,
+		CONVOYBALL,
+		TANKL,
+		TANKH
 	};
 
 	idRandom randGen = idRandom(0);
@@ -523,6 +536,8 @@ rvMonsterBossMakron::Spawn
 ================
 */
 void rvMonsterBossMakron::Spawn ( void ) {
+
+	isStructure = true;
 
 	if( spawnArgs.GetBool("passive"))	{
 		flagFakeDeath = true;
@@ -2399,35 +2414,50 @@ void rvMonsterBossMakron::Think(void) {
 		thinkCount++;
 
 		//check if ready to build something
-		if (thinkCount < 60) {
+		if (thinkCount < thinkTimeLimit) {
 			return;
 		}
 		thinkCount = 0;
 
+		idVec3 randPos;
+
 		switch (aiStage) {
 		case 0:
 			//build power gen
+			GetPosition(randPos, idMat3());
+			randPos.x = randPos.x - 200 + randGen.RandomInt(400);
+			randPos.y = randPos.y - 200 + randGen.RandomInt(400);
+
+			placeStructure(POWER, randPos);
+			
+			aiStage++;
 			break;
 		case 1:
 			//build barracks
+			GetPosition(randPos, idMat3());
+			randPos.z += 10;
+			randPos.x = randPos.x - 100 + randGen.RandomInt(200);
+			randPos.y = randPos.y - 100 + randGen.RandomInt(200);
+
+			placeStructure(BARRACKS, randPos);
+
+			aiStage++;
 			break;
 		default:
 			int rand = randGen.RandomInt(3);
-			idVec3 randPos;
-			idMat3 dummy;
 
 			switch (rand) {
 			case 0:
-				rand = randGen.RandomInt(4);
-				GetPosition(randPos, dummy);
-				randPos.x = randPos.x - 5000 + randGen.RandomInt(10000);
-				randPos.y = randPos.y - 5000 + randGen.RandomInt(10000);
+				rand = randGen.RandomInt(3);
+				GetPosition(randPos, idMat3());
+				randPos.x = randPos.x - 200 + randGen.RandomInt(400);
+				randPos.y = randPos.y - 200 + randGen.RandomInt(400);
 
 				placeStructure(rand, randPos);
 				break;
 			default:
 				while (true) {
-					rand = randGen.RandomInt(9);
+					rand = randGen.RandomInt(6);
 					if (placeUnit(rand)) {
 						break;
 					}
@@ -2446,18 +2476,22 @@ void rvMonsterBossMakron::placeStructure(int type, idVec3 pos) {
 
 	switch (type) {
 	case BARRACKS:
-
+		spawnUnit("monster_berserker", tankFactoryLocation, 1, "");
 		barracksLocation = pos;
 		break;
 	case TANK_FACTORY:
-
+		spawnUnit("monster_convoy_ground", tankFactoryLocation, 1, "");
 		tankFactoryLocation = pos;
 		break;
 	case TURRET:
+		spawnUnit("monster_turret_rocket", pos, 1, "");
 		break; 
 	case TURRET_AIR:
+		spawnUnit("monster_turret_flying", pos, 1, "");
 		break;
 	case POWER:
+		spawnUnit("char_marine_tech", pos, 1, "");
+		thinkTimeLimit = thinkTimeLimit * 2 / 3;
 		break;
 	case AIRBASE:
 
@@ -2471,17 +2505,60 @@ bool rvMonsterBossMakron::placeUnit(int type) {
 
 	//check if tank factory exists if we are ordering tanks.
 	//will re-roll on if it fails
-	if (type > 6 && tankFactoryLocation == idVec3(-1000, -1000, -1000)) {
+	if (type > 3 && tankFactoryLocation == idVec3(-1000, -1000, -1000)) {
 		return false;
 	}
 
 	switch (type) {
 		//insert units here as needed
-		default:
-			break;
+	case MARINE_STROGG:
+		spawnUnit("monster_strogg_marine", barracksLocation, 1, "");
+		break;
+	case GRUNT:
+		spawnUnit("monster_grunt", tankFactoryLocation, 1, "");
+		break;
+	case BRUTE:
+		spawnUnit("monster_gladiator", tankFactoryLocation, 1, "");
+		break;
+	case GUNNER:
+		spawnUnit("monster_gunner", tankFactoryLocation, 1, "");
+		break;
+	case CONVOYBALL:
+		spawnUnit("monster_strogg_hover", tankFactoryLocation, 1, "");
+		break;
+	case TANKL:
+		spawnUnit("monster_lt_tank", tankFactoryLocation, 1, "");
+		break;
+	case TANKH:
+		spawnUnit("monster_heavy_hovertank", tankFactoryLocation, 1, "");
+		break;
+	default:
+		break;
 	}
 
 	return true;
+}
+
+void rvMonsterBossMakron::spawnUnit(const char* className, idVec3 origin, int team, const char* name) {
+
+	idDict		dict;
+	origin.z += 25;
+	dict.Set("classname", className);
+	dict.Set("origin", origin.ToString());
+	dict.Set("team", team + "");
+	if (className == "char_marine_tech") {
+		dict.Set("reactor", "1");
+	}
+	else {
+		dict.Set("reactor", "0");
+	}
+	dict.Set("npc_name", name);
+
+	idEntity* newEnt = NULL;
+	gameLocal.SpawnEntityDef(dict, &newEnt);
+	if (newEnt) {
+		gameLocal.Printf("spawned entity '%s'\n", newEnt->name.c_str());
+	}
 }
 
 	

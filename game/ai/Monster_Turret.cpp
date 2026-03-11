@@ -16,6 +16,8 @@ public:
 	void				Save					( idSaveGame *savefile ) const;
 	void				Restore					( idRestoreGame *savefile );
 
+	void Think(void);
+
 	virtual bool		Pain					( idEntity *inflictor, idEntity *attacker, int damage, const idVec3 &dir, int location );
 
 protected:
@@ -49,6 +51,12 @@ rvMonsterTurret::rvMonsterTurret
 */
 rvMonsterTurret::rvMonsterTurret ( ) {
 	shieldHealth = 0;
+}
+
+void rvMonsterTurret::Think(void) {
+
+	StaticMove();
+	idAI::Think();
 }
 
 void rvMonsterTurret::InitSpawnArgsVariables ( void ) {

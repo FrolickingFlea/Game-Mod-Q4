@@ -117,12 +117,7 @@ entityDef monster_convoy_ground
 	"ragdoll"							"monster_convoy_ground"	
 
 	// --------------------------------- Actions ------------------------------------
-	"action_blasterAttack"				"1"
-	"action_blasterAttack_minrange"		"200"
-	"action_blasterAttack_maxrange"		"5000"
-	"action_blasterAttack_rate"			"0.5"
 	
-	"actiontimer_pain"					"0"
 
 	// --------------------------------- Body ------------------------------------
 	"model"								"model_monster_convoy_ground"
@@ -165,8 +160,8 @@ entityDef monster_convoy_ground
 	"look_max"							"0 720 0"
 
 	// --------------------------------- Combat ----------------------------------
-//	"health"							"500"
-	"health"							"250"
+//	"health"							"2000"
+	"health"							"2000"
 
 	"def_attack_blaster"				"projectile_cgc_shot"
 	"attack_blaster_accuracy"			"1"

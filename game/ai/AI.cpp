@@ -1244,7 +1244,7 @@ void idAI::Think( void ) {
 		aiManager.timerThink.Stop ( );
 	}
 
-	if (aiMoveCounter < 120 || team != 0) {
+	if (aiMoveCounter < 120 || team != 0 || isStructure) {
 		aiMoveCounter++;
 		return;
 	}

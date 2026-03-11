@@ -92435,21 +92435,7 @@ Version 3
 "radius" "128"
 }
 // entity 114
-{
-"anim" "crouch_idle"
-"classname" "airdefense_char_marine_shotgun"
-"name" "npc_hillstrom"
-"origin" "9476 -2568 16"
-"angle" "90"
-"hide" "1"
-"npc_name" "#str_400206"
-"def_head" "char_marinehead_helmet"
-"npc_description" "#str_400207"
-"undying" "1"
-"def_persona" "persona_badger"
-"skin" "skins/models/characters/marine/badger"
-"anim_idle" "crouch_idle"
-}
+
 // entity 115
 {
 "classname" "target_null"
@@ -92458,27 +92444,9 @@ Version 3
 "angle" "225"
 }
 // entity 116
-{
-"anim" "kneel_loop_1b"
-"classname" "char_marine_npc_anderson_airdefense_intro"
-"name" "marine_anderson_standin"
-"origin" "10292 -7168 62"
-"angle" "315"
-"frame" "1"
-"cinematic" "1"
-"hide" "1"
-}
+
 // entity 117
-{
-"anim" "lay_loop_1a"
-"classname" "char_marine_npc_metcalf_airdefense"
-"name" "char_marine_wounded_medic"
-"origin" "10344 -7160 62"
-"angle" "315"
-"frame" "83"
-"cinematic" "1"
-"hide" "1"
-}
+
 // entity 118
 {
 "classname" "target_null"
@@ -92509,42 +92477,9 @@ Version 3
 "nodrop" "1"
 "rotation" "1 0 0 0 1 0 0 0 1"
 }
-// entity 122
-{
-"classname" "airdefense_char_marine"
-"name" "npc_redshirt_1"
-"origin" "9960 -6086 0"
-"def_head" "char_marinehead_helmet"
-"npc_name" "#str_400208"
-"npc_description" "#str_400207"
-"skin" "skins/models/characters/marine/badger"
-"ambush" "1"
-"hide" "2"
-"anim" "ad_door_marine_idle"
-"anim_idle" "ad_door_marine_idle"
-"angle" "225"
-"anim_action_idle" "idle"
-"passive" "1"
-"frame" "1"
-"def_persona" "persona_marine_act1_8_helmet"
-"lipsync_talk_primary" "vo_1_1_1_46_1"
-"lipsync_talk_secondary" "vo_1_1_1_46_2"
-}
+
 // entity 123
-{
-"classname" "airdefense_char_marine"
-"name" "marine_skewer"
-"origin" "9758 -3056 32"
-"frame" "37"
-"hide" "1"
-"anim" "ad_berserker_intro"
-"def_head" "char_marinehead_helmet"
-"npc_name" "#str_400209"
-"npc_description" "#str_400207"
-"notarget" "1"
-"skin" "skins/models/characters/marine/badger"
-"passive" "1"
-}
+
 // entity 124
 {
 "classname" "trigger_once"
@@ -95661,19 +95596,7 @@ Version 3
 }
 }
 // entity 219
-{
-"anim" "idle"
-"classname" "char_marine_hyperblaster"
-"name" "char_marine_hyperblaster_2"
-"origin" "10616 -2536 0"
-"angle" "270"
-"hide" "2"
-"npc_name" "#str_400211"
-"npc_description" "#str_400212"
-"skin" "skins/models/characters/marine/kodiak"
-"def_head" "char_marinehead_helmet"
-"ambush" "1"
-}
+
 // entity 220
 {
 "classname" "func_fx"
@@ -95705,22 +95628,7 @@ Version 3
 "cinematic" "1"
 }
 // entity 223
-{
-"anim" "idle"
-"classname" "char_marine_npc_anderson_airdefense"
-"name" "npc_anderson"
-"origin" "9388 -4314 8"
-"angle" "90"
-"hide" "1"
-"npc_name" "#str_400213"
-"npc_description" "#str_400214"
-"anim_talk" "idle"
-"disableHeal" "1"
-"leader" "player1"
-"def_persona" "persona_rhino_anderson_pfc"
-"objectivetext_failed" "#str_400184"
-"objectivetitle_failed" "#str_400196"
-}
+
 // entity 224
 {
 "classname" "light"
@@ -96084,23 +95992,28 @@ Version 3
 }
 // entity 240
 {
-"classname" "char_marine_npc_morris_airdefense"
+"classname" "monster_makron"
 "name" "npc_morris_intro"
-"origin" "9645 -6827 0"
+"origin" "11045 -6927 0"
 "lipsync_talk_primary" "vo_1_1_1_41_1"
 "lipsync_talk_secondary" "vo_1_1_1_41_2"
 "lipsync_talk_loop1" "vo_1_1_1_41_3"
 "angle" "315"
 "anim_talk" "working_wall_panel_3"
-"npc_name" "#str_400215"
+"npc_name" "Your Base"
 "anim" "working_wall_panel_3"
-"npc_description" "#str_400214"
-"passive" "1"
+"npc_description" "Defend Me!"
 "anim_idle" "working_wall_panel_3"
-"noDamage" "1"
-"hide" "1"
-"frame" "1"
+"team" "0"
 }
+
+//{
+//"anim" "idle"
+//"classname" "airdefense_monster_grunt"
+//"name" "mon_grunt_pipes"
+//"origin" "9645 -6827 100"
+//"angle" "180"
+//}
 // entity 241
 {
 "classname" "func_static"
@@ -96600,17 +96513,7 @@ Version 3
 "delay" ".2"
 }
 // entity 252
-{
-"classname" "char_marine_npc_cortez_airdefense"
-"name" "npc_cortez"
-"origin" "8216 -2584 24"
-"npc_name" "#str_400217"
-"def_head" "char_marinehead_cortez"
-"npc_description" "#str_400214"
-"undying" "1"
-"notarget" "1"
-"def_persona" "persona_rhino_cortez_cpl"
-}
+
 // entity 253
 {
 "classname" "light"
@@ -97075,44 +96978,43 @@ Version 3
 }
 // entity 268
 {
-"classname" "char_marine_npc_metcalf_airdefense"
+"classname" "monster_makron"
 "name" "npc_metcalf"
-"origin" "9292 -6441 16"
-"npc_name" "#str_400218"
-"npc_description" "#str_400207"
+"origin" "9292 -6541 6"
 "passive" "1"
 "anim_idle" "idle_reclined_3"
 "lookAtPlayer" "0"
 "anim" "idle_reclined_3"
 "angle" "270"
-"noDamage" "1"
-"cinematic" "1"
-"def_head" "char_marinehead_helmet_medic"
-"skin" "skins/characters/marine/medic_wounded"
-"hide" "1"
+//"noDamage" "1"
+//"cinematic" "1"
+//"def_head" "char_marinehead_helmet_medic"
+//"skin" "skins/characters/marine/medic_wounded"
+//"hide" "1"
+"team" "1"
 }
 // entity 269
-{
-"classname" "char_marine_npc_anderson_airdefense_intro"
-"name" "npc_anderson_outdoor"
-"origin" "9266 -6433 15"
-"angle" "0"
-"noDamage" "1"
-"npc_name" "#str_400219"
-"npc_description" "#str_400214"
-"passive" "1"
-"lookAtPlayer" "0"
-"anim" "medic_treating"
-"anim_idle" "medic_treating"
-"cinematic" "1"
-"frame" "55"
-"disableHeal" "1"
-"def_persona" "persona_rhino_anderson_pfc"
-"anim_preHeal" "treat_to_stand"
-"script_postHeal" "map_airdefense1::returnAndersonToWork"
-"stationary" "1"
-"hide" "1"
-}
+//{
+//"classname" "char_marine_npc_anderson_airdefense_intro"
+//"name" "npc_anderson_outdoor"
+//"origin" "9266 -6433 15"
+//"angle" "0"
+//"noDamage" "1"
+//"npc_name" "#str_400219"
+//"npc_description" "#str_400214"
+//"passive" "1"
+//"lookAtPlayer" "0"
+//"anim" "medic_treating"
+//"anim_idle" "medic_treating"
+//"cinematic" "1"
+//"frame" "55"
+//"disableHeal" "1"
+//"def_persona" "persona_rhino_anderson_pfc"
+//"anim_preHeal" "treat_to_stand"
+//"script_postHeal" "map_airdefense1::returnAndersonToWork"
+//"stationary" "1"
+//"hide" "1"
+//}
 // entity 270
 {
 "classname" "light"
@@ -99274,14 +99176,14 @@ Version 3
 "model" "models/mapobjects/strogg/airdefense/podcrash_roof2.lwo"
 }
 // entity 303
-{
-"anim" "idle"
-"classname" "airdefense_monster_grunt"
-"name" "mon_grunt_pipes"
-"origin" "9859.1 -2188 -16"
-"angle" "180"
-"hide" "1"
-}
+//{
+//"anim" "idle"
+//"classname" "airdefense_monster_grunt"
+//"name" "mon_grunt_pipes"
+//"origin" "9859.1 -2188 -16"
+//"angle" "180"
+//"hide" "1"
+//}
 // entity 304
 {
 "classname" "env_airdefense_pipes"
@@ -133622,7 +133524,7 @@ Version 3
 "inv_objective" "1"
 "inv_icon" "guis/assets/hud/items/generic.tga"
 "classname" "item_objective"
-"name" "objectiveIntro"
+"name" "Destroy the Enemy Base"
 "origin" "9560 -6568 32"
 "objectivetext" "#str_400003"
 "objectivetitle" "#str_400002"
@@ -133634,7 +133536,7 @@ Version 3
 "inv_objective" "1"
 "inv_icon" "guis/assets/hud/items/generic.tga"
 "classname" "item_objectivecomplete"
-"name" "completeObjectiveIntro"
+"name" "Enemy Base Destroyed, Mission Complete!"
 "origin" "9560 -6584 32"
 "objectivetext" "#str_400002"
 "objectivetitle" "#str_400002"
@@ -134126,28 +134028,9 @@ Version 3
 "neverDormant" "1"
 }
 // entity 982
-{
-"inv_item" "1"
-"inv_objective" "1"
-"inv_icon" "guis/assets/hud/items/generic.tga"
-"classname" "item_objective"
-"name" "objectiveMedic"
-"origin" "9576 -6568 32"
-"objectivetext" "#str_400007"
-"objectivetitle" "#str_400006"
-"screenShot" "airdefense_obj_2.tga"
-}
+
 // entity 983
-{
-"inv_item" "1"
-"inv_objective" "1"
-"inv_icon" "guis/assets/hud/items/generic.tga"
-"classname" "item_objectivecomplete"
-"name" "completeObjectiveMedic"
-"origin" "9576 -6584 32"
-"objectivetext" "#str_400006"
-"objectivetitle" "#str_400006"
-}
+
 // entity 984
 {
 "classname" "func_group"
@@ -147471,21 +147354,7 @@ Version 3
 "cinematic" "1"
 }
 // entity 1297
-{
-"classname" "char_marine"
-"name" "npc_redshirt_2"
-"origin" "9632 -4872 0"
-"angle" "180"
-"def_head" "char_marinehead_helmet"
-"frame" "1"
-"npc_name" "#str_400222"
-"npc_description" "#str_400207"
-"skin" "skins/models/characters/marine/badger"
-"hide" "2"
-"def_persona" "persona_marine_act1_4_helmet"
-"lipsync_talk_primary" "vo_1_1_1_47_1"
-"lipsync_talk_secondary" "vo_1_1_1_47_2"
-}
+
 // entity 1298
 {
 "classname" "monster_strogg_marine_mgun"
@@ -150097,27 +149966,7 @@ Version 3
 "remove" "0"
 }
 // entity 1417
-{
-"classname" "airdefense_char_marine_shotgun"
-"name" "npc_chase"
-"origin" "9290 -2723 17"
-"angle" "90"
-"hide" "2"
-"lipsync_vo_wounded_1" "vo_1_1_1_170_1"
-"lipsync_vo_wounded_2" "vo_1_1_2_50_2"
-"npc_name" "#str_400223"
-"def_head" "char_marinehead_helmet"
-"undying" "1"
-"npc_description" "#str_400207"
-"def_persona" "persona_badger"
-"skin" "skins/models/characters/marine/badger"
-"anim_idle" "and_stimpack2b_loop"
-"anim" "and_stimpack2b_loop"
-"passive" "1"
-"noLook" "1"
-"frame" "104"
-"noDamage" "1"
-}
+
 // entity 1418
 {
 "anim" "run"
@@ -150130,18 +149979,7 @@ Version 3
 "trigger_anim" "run"
 }
 // entity 1419
-{
-"classname" "char_marine_npc_miller_airdefense"
-"name" "npc_miller"
-"origin" "9288 -2568 16"
-"angle" "90"
-"hide" "1"
-"noDamage" "1"
-"def_head" "char_marinehead_gen_white_2"
-"undying" "1"
-"def_persona" "persona_badger"
-"skin" "skins/models/characters/marine/badger"
-}
+
 // entity 1420
 {
 "classname" "target_null"
@@ -176867,28 +176705,9 @@ Version 3
 "rotation" "-1e-008 3e-008 -1 0.906308 0.422619 0 0.422619 -0.906308 -3e-008"
 }
 // entity 2059
-{
-"inv_item" "1"
-"inv_objective" "1"
-"inv_icon" "guis/assets/hud/items/generic.tga"
-"classname" "item_objective"
-"name" "objectiveReturnMedic"
-"origin" "9592 -6568 32"
-"objectivetext" "#str_400197"
-"objectivetitle" "#str_400196"
-"screenShot" "airdefense_obj_4.tga"
-}
+
 // entity 2060
-{
-"inv_item" "1"
-"inv_objective" "1"
-"inv_icon" "guis/assets/hud/items/generic.tga"
-"classname" "item_objectivecomplete"
-"name" "objectiveCompleteReturnMedic"
-"origin" "9592 -6584 32"
-"objectivetext" "#str_400196"
-"objectivetitle" "#str_400196"
-}
+
 // entity 2061
 {
 "classname" "light"

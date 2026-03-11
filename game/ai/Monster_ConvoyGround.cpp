@@ -108,6 +108,12 @@ void rvMonsterConvoyGround::Spawn ( void ) {
 	
 	onGround = true;
 
+	if (team == 0) {
+		idVec3 pos;
+		GetPosition(pos, idMat3());
+		gameLocal.GetLocalPlayer()->tankFactoryPos = pos;
+	}
+
 }
 
 /*
@@ -122,7 +128,8 @@ void rvMonsterConvoyGround::Postthink ( void ) {
 		InterruptState ( "State_Fall" );
 	}
 */
-	
+	StaticMove();
+
 	idAI::Postthink ( );
 }	
 

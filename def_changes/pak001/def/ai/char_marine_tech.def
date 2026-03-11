@@ -144,7 +144,7 @@ entityDef char_marine_tech_extras
 	"editor_ignore"					"1"
 	
 	"spawnclass"					"rvAIMedic"
-	"editor_var disableHeal"		"Set to 1 to have them spawn with heal disabled - enable it later via the enableHeal script event.  Default 0."
+	"editor_var disableHeal"		"1"
 	"editor_var noAutoHeal"			"Won't heal you unless you click on them.  Defaults to 0."
 	"editor_var stationary"			"Won't move towards you to heal you.  Defaults to 0."
 	"editor_var healObeyTether"		"Won't break tethers to heal you.  Defaults to 0."
@@ -159,14 +159,14 @@ entityDef char_marine_tech_extras
 	"editor_var healWait"			"How long (in seconds) they force you to wait between heals.  Default 0.  This should really be consistent across all levels."
 
 	"tech"							"1"
-	"minMarineHeal"					"50"
-	"maxMarineHeal"					"75"
-	"minStroggHeal"					"50"
-	"maxStroggHeal"					"100"
-	"healAmt"						"50"
-	"patientRange"					"640"
-	"buddyRange"					"640"
-	"enemyRange"					"1024"
+	"minMarineHeal"					"0"
+	"maxMarineHeal"					"0"
+	"minStroggHeal"					"0"
+	"maxStroggHeal"					"0"
+	"healAmt"						"0"
+	"patientRange"					"0"
+	"buddyRange"					"0"
+	"enemyRange"					"0"
 	
 	"def_attach"					"tech_tool"
 
@@ -209,9 +209,14 @@ entityDef char_marine_tech_extras
 entityDef char_marine_tech
 {
 	"inherit1"						"char_marine_tech_extras"
-	"inherit2"						"char_marine_unarmed"
+	"inherit2"						"char_marine_base"
 	"editor_ignore"					"0"
 
 	"model"							"model_char_marine_tech"
 	"def_head"						"char_marinehead_helmet_tech"
+
+	"static"											"1"
+	"tactical_passive"							"1"
+	"team"										"1"
+	"health"	"900"
 }	

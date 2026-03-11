@@ -428,10 +428,12 @@ public:
 	//frinedly ai unit goToPosition
 	idVec3 gotoPos;
 
-	int money = 5000;
+	int money = 2500;
 
-	idVec3 barracksPos;
-	idVec3 tankFactoryPos;
+	idVec3 barracksPos = idVec3(-1000,-1000,-1000);
+	idVec3 tankFactoryPos = idVec3(-1000, -1000, -1000);
+
+	void spawnUnit(const char* className, idVec3 origin, int team, const char* name);
 
 public:
 	CLASS_PROTOTYPE( idPlayer );

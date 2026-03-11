@@ -125,7 +125,7 @@ entityDef monster_turret_flying
 	"action_blasterAttack_Rate"				"1"
 	"action_blasterAttack_Diversity"		".75"
 	"action_blasterAttack_minRange"			"0"
-	"action_blasterAttack_maxRange"			"3000"
+	"action_blasterAttack_maxRange"			"300"
 	"action_blasterAttack_blendFrames"		"0"
 	
 	"mins"									"-24 -24 0"

@@ -31,7 +31,7 @@ entityDef character_tube_marine
 	//"inherit"						"actor_default"
 	"spawnclass"					"idAnimated"
 	"size"							"32 32 64"
-	"health"						"200"
+	"health"						"1000"
 	"ragdoll"						"tube_marine"	
 	"model"							"model_character_tube_marine"
 	"anim"							"idle"

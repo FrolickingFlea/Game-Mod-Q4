@@ -116,7 +116,7 @@ entityDef monster_turret
 	"action_blasterAttack"								"1"
 	"action_blasterAttack_Rate"							"1"
 	"action_blasterAttack_minRange"						"0"
-	"action_blasterAttack_maxRange"						"3000"
+	"action_blasterAttack_maxRange"						"300"
 	"action_blasterAttack_blendFrames"					"0"
 	"action_blasterAttack_noturn"						"0"
 
@@ -127,7 +127,7 @@ entityDef monster_turret
 	"use_aas"											""
 	"static"											"1"
 	"remove_on_Death"									"1"
-	"health"											"100"
+	"health"											"3000"
 //	"shieldHealth"										"100"
 	//NOTE: this is damage done to the impacting vehicle, not to me by the vehicle
 	"vehicle_impact_damage"								"50"

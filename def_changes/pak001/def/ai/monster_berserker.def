@@ -461,35 +461,6 @@ entityDef monster_berserker
 	"actionTimer_evade_rate"				"8"
 	"actionTimer_specialAttack_rate"		"7"
 
-	"action_evadeLeft"						"1"
-	"action_evadeRight"						"1"
-	"action_meleeAttack"					"1"
-	"action_meleeAttack_maxRange"			"100"
-	"action_jumpBack"						"1"
-	"action_leapAttack"						"1"
-
-	"action_leapAttack_minRange"			"100"
-	"action_leapAttack_maxRange"			"250"
-	
-	"action_chargeAttack"					"1"
-	"action_chargeAttack_minRange"			"100"
-	"action_chargeAttack_maxRange"			"275"
-	"action_chargeAttack_chance"			".5"
-	
-	"action_popupAttack"					"1"
-	"action_popupAttack_maxRange"			"125"
-	"action_popupAttack_chance"				".5"
-	"action_popupAttack_anim"				"melee_popup"
-	
-	"action_rangedAttack"					"1"
-	"action_rangedAttack_minRange"			"0"
-	"action_rangedAttack_maxRange"			"500"
-	"action_rangedAttack_anim"				"ranged_attack"
-	"action_rangedAttack_rate"				"0.25"
-	"action_rangedAttack_failrate"			"0.5"
-	"action_rangedAttack_chance"			"1"
-	"action_rangedAttack_nopain"			"1"
-
 	// --------------------------------- Body ------------------------------------
 	"model"									"model_monster_berserker"
 	"ragdoll"								"monster_berserker"	

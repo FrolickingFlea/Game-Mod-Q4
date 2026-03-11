@@ -37,6 +37,11 @@ public:
 
 	bool				isTech;
 
+	bool isReactor = false;
+	int behaviorCounter = 0;
+	int moneyGrowthAmount = 10;
+	char* npcName;
+
 protected:
 	virtual void		OnStartMoving					( void );
 

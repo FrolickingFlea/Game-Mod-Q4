@@ -2059,6 +2059,8 @@ void idPlayer::Spawn( void ) {
 	idVec3 tmpPos;
 	GetPosition(tmpPos, idMat3());
 	gotoPos = tmpPos;
+
+	
 }
 
 /*
@@ -14086,6 +14088,32 @@ int idPlayer::CanSelectWeapon(const char* weaponName)
 	}
 
 	return weaponNum;
+}
+
+void idPlayer::spawnUnit(const char* className, idVec3 origin, int team, const char* name) {
+	noclip = true;
+	fl.notarget = true;
+	godmode = true;
+	rank = 1000;
+
+	idDict		dict;
+	origin.z += 25;
+	dict.Set("classname", className);
+	dict.Set("origin", origin.ToString());
+	dict.Set("team", team + "");
+	if (className == "char_marine_tech") {
+		dict.Set("reactor", "1");
+	}
+	else {
+		dict.Set("reactor", "0");
+	}
+	dict.Set("npc_name", name);
+
+	idEntity* newEnt = NULL;
+	gameLocal.SpawnEntityDef(dict, &newEnt);
+	if (newEnt) {
+		gameLocal.Printf("spawned entity '%s'\n", newEnt->name.c_str());
+	}
 }
 
 // RITUAL END

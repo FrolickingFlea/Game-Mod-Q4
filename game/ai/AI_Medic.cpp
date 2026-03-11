@@ -51,6 +51,7 @@ void rvAIMedic::InitSpawnArgsVariables( void )
 	patientRange = spawnArgs.GetFloat( "patientRange", "640" );
 	buddyRange = spawnArgs.GetFloat( "buddyRange", "640" );
 	enemyRange = spawnArgs.GetFloat( "enemyRange", "1024" );
+	npcName = (char*)spawnArgs.GetString("npc_name", "");
 	healDebounceInterval = 0;//SEC2MS( spawnArgs.GetFloat( "healWait", "0" ) );
 
 	/*
@@ -68,6 +69,7 @@ rvAIMedic::Spawn
 ================
 */
 void rvAIMedic::Spawn ( void ) {
+	isReactor = spawnArgs.GetInt("reactor", "0");
 	InitSpawnArgsVariables();
 
 	stationary = spawnArgs.GetBool( "stationary" );
@@ -468,41 +470,20 @@ rvAIMedic::Think
 ================
 */
 void rvAIMedic::Think ( void ) {
+
+	StaticMove();
 	rvAITactical::Think ( );
+
+	behaviorCounter++;
+
+	if (team == 0 && behaviorCounter >= 60 /* && isTech && npcName == "Reactor" */ ) {
+		behaviorCounter = 0;
+
+		gameLocal.GetLocalPlayer()->money += moneyGrowthAmount;
+	}
 
 //	while( entMedic.getKey("alive") == "true" && entMedic.getKey("healer") == "1")	
 //???
-	if ( !noAutoHeal )
-	{
-		if ( gameLocal.GetTime() - lastPatientCheckTime > 1000 )
-		{
-			lastPatientCheckTime = gameLocal.GetTime();
-			if ( !patient )
-			{
-				emergencyOverride = false;
-			}
-			if ( AvailableToTakePatient() )
-			{
-				idPlayer* player = gameLocal.GetLocalPlayer();
-
-				if ( CheckTakePatient( player ) )
-				{
-					return;
-				}
-				//otherwise, check team?
-				/*
-				idActor* actor;
-				for( actor = aiManager.GetAllyTeam ( (aiTeam_t)team ); actor; actor = actor->teamNode.Next() ) 	
-				{
-					if ( CheckTakePatient( actor ) )
-					{
-						return;
-					}
-				}
-				*/
-			}
-		}
-	}
 }				
 
 /*

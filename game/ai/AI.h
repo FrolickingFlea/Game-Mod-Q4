@@ -661,6 +661,8 @@ public:
 	idVec3					commandMoveToPosition;
 
 	// navigation
+	bool isStructure = false;
+
 	float					TravelDistance					( const idVec3 &end ) const;
 	float					TravelDistance					( const idVec3 &start, const idVec3 &end ) const;
 	float					TravelDistance					( idEntity* ent ) const;
