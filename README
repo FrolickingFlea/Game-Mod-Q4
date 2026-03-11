@@ -1,0 +1,22 @@
+[Quake-RTS - README]
+
+[Introduction]
+
+This mod turns quake 4 into a generic rts game.
+
+To Install:
+1) place the quake-rts folder in the base of your quake 4 installation
+2) run Quake-rts.bat to launch the "quake-rts" mod in quake 4
+
+[How to Play]
+
+Objective: destroy your opponent's buildings without losing your own.
+
+This mod changes the player's view to a top-down perspective. using a laser pointer, 
+they can direct their troops to move towards objectives.
+
+Troops will automatically engage enemy forces in range.
+
+players can epand how many and what kind of units they can build by building
+more base structures. additionally, placing turrets can be useful for defending
+your base.
